@@ -27,7 +27,8 @@ protected:
 
 
 public:
-	MyTweek(const vector<double>& vals, double Clip);
+	MyTweek();
+	const vector<double> Do(const vector<double>& vals, double Clip) const;
 	virtual ~MyTweek();
 };
 

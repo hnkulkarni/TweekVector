@@ -86,7 +86,8 @@ int main(int argc, char* argv[])
 
 	vector<double> Vals = VectorOp<double>::GetRandom(numElements);
 
-	MyTweek mTweek(Vals, Clip);
+	MyTweek mTweek;
+	mTweek.Do(Vals, Clip);
 
 	return EXIT_SUCCESS;
 }

@@ -25,8 +25,42 @@ public:
 	VectorOp(){};
 	virtual ~VectorOp(){};
 	static vector<T> GetRandom(UINT iNum);
+	static const vector<T> ClipTopBottom(const vector<T>& vals, double Clip);
 
 };
+
+/*******************************************************************
+ * Function Name: ClipTopBottom
+ * Return Type 	: const vector<T>
+ * Created On	: May 24, 2014
+ * Created By 	: hrushi
+ * Comments		: Clip the top and bottom percentage in the vector
+ * Arguments	: const vector<T>& vals, double Clip
+ *******************************************************************/
+template<typename T>
+const vector<T> VectorOp<T>::ClipTopBottom( const vector<T>& vals, double Clip)
+{
+	if(Clip >= 0.5 )
+	{
+		throw ERR_INVALID_CLIP_SIZE;
+	}
+
+	vector<T> TrimmedVector;
+	UINT ElemToClip = vals.size() * Clip;
+	UINT ClipSize   = vals.size() - 2 * ClipSize;
+
+	TrimmedVector.resize(ClipSize);
+
+	std::copy(vals.begin() + ElemToClip, vals.begin() + ClipSize, TrimmedVector.begin());
+
+	cout << vals;
+	cout << endl;
+	cout << TrimmedVector;
+	cout << endl;
+
+	return TrimmedVector;
+}
+
 
 /*******************************************************************
  * Function Name: operator<<

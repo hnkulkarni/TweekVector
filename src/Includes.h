@@ -45,6 +45,8 @@ typedef unsigned int UINT;
  *           Constants
  **************************************************************/
 const int ERR_INVALID_ARGS = -1;
+const int ERR_INVALID_CLIP_SIZE = -2;
+
 const double MAX_CLIP = 0.5;
 
 #endif /* INCLUDES_H_ */
