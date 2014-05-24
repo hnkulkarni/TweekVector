@@ -26,8 +26,44 @@ public:
 	virtual ~VectorOp(){};
 	static vector<T> GetRandom(UINT iNum);
 	static const vector<T> ClipTopBottom(const vector<T>& vals, double Clip);
+	static T Sum(const vector<T>& vals);
+	static double Mean(const vector<T>& vals);
 
 };
+
+/*******************************************************************
+ * Function Name: Mean
+ * Return Type 	: double
+ * Created On	: May 24, 2014
+ * Created By 	: hrushi
+ * Comments		: Calculates the Mean of the elements
+ * Arguments	: const vector<T>& vals
+ *******************************************************************/
+template<typename T>
+double VectorOp<T>::Mean( const vector<T>& vals)
+{
+	double vSum = Sum(vals);
+	cout << "Sum: " << vSum << endl;
+
+	double vMean = vSum/vals.size();
+	return vMean;
+}
+
+
+/*******************************************************************
+ * Function Name: Sum
+ * Return Type 	: double
+ * Created On	: May 24, 2014
+ * Created By 	: hrushi
+ * Comments		: Calculates the Sum of the elements
+ * Arguments	: const vector<T>& vals
+ *******************************************************************/
+template<typename T>
+T VectorOp<T>::Sum( const vector<T>& vals)
+{
+	return std::accumulate(vals.begin(), vals.begin() + vals.size(), 0.0);
+}
+
 
 /*******************************************************************
  * Function Name: ClipTopBottom
@@ -47,16 +83,12 @@ const vector<T> VectorOp<T>::ClipTopBottom( const vector<T>& vals, double Clip)
 
 	vector<T> TrimmedVector;
 	UINT ElemToClip = vals.size() * Clip;
-	UINT ClipSize   = vals.size() - 2 * ClipSize;
+	UINT ClipSize   = vals.size() - 2 * ElemToClip;
 
 	TrimmedVector.resize(ClipSize);
 
-	std::copy(vals.begin() + ElemToClip, vals.begin() + ClipSize, TrimmedVector.begin());
-
-	cout << vals;
-	cout << endl;
-	cout << TrimmedVector;
-	cout << endl;
+	//Copy copies only from start to end - 1; Hence this extra one.
+	std::copy(vals.begin() + ElemToClip, vals.begin() + ElemToClip + ClipSize, TrimmedVector.begin());
 
 	return TrimmedVector;
 }

@@ -87,7 +87,7 @@ int main(int argc, char* argv[])
 	vector<double> Vals = VectorOp<double>::GetRandom(numElements);
 
 	MyTweek mTweek;
-	mTweek.Do(Vals, Clip);
+	mTweek.ClippedMean(Vals, Clip);
 
 	return EXIT_SUCCESS;
 }

@@ -28,7 +28,7 @@ protected:
 
 public:
 	MyTweek();
-	const vector<double> Do(const vector<double>& vals, double Clip) const;
+	const vector<double> ClippedMean(const vector<double>& vals, double Clip) const;
 	virtual ~MyTweek();
 };
 

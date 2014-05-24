@@ -19,6 +19,7 @@
 #include <exception>
 #include <time.h>       /* For generating Random Numbers */
 #include <ostream>
+#include <numeric>      // std::accumulate
 
 /**************************************************************
  *           Boost includes

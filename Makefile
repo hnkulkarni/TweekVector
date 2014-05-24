@@ -51,7 +51,7 @@ OBJDIR 			:= obj
 CPP_FILES 		:= $(wildcard $(SRCDIR)/*.cpp)
 OBJ_FILES 		:= $(addprefix $(OBJDIR)/,$(notdir $(CPP_FILES:.cpp=.o)))
 PRJ_INCLUDES 	:= src/Constants.h src/Errors.h src/MyIncludes.h src/OpenCV_Includes.h src/Defines.h
-OP_INCLUDES	:= src/VectorOp.h src/StringOp.h src/MapOp.h
+OP_INCLUDES	:= src/VectorOp.h
 
 #Assuming that my generic templates class will be named as *Op.h
 $(OBJDIR)/%.o: src/%.cpp  src/%.h $(OP_INCLUDES) $(PRJ_INCLUDES)

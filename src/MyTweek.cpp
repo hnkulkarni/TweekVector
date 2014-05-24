@@ -43,13 +43,20 @@ MyTweek::~MyTweek()
  * Comments		: Performs the tweek
  * Arguments	: const vector<double>& vals, double Clip
  *******************************************************************/
-const vector<double> MyTweek::Do( const vector<double>& vals, double Clip) const
+const vector<double> MyTweek::ClippedMean( const vector<double>& vals, double Clip) const
 {
 	vector<double> vTweek = vals;
+
+	cout << "Unsorded: \t" << vTweek << endl;
 	sort(vTweek.begin(), vTweek.end());
 
-	VectorOp<double>::ClipTopBottom(vals, Clip);
+	cout << "Sorted: \t" << vTweek << endl;
+	vTweek = VectorOp<double>::ClipTopBottom(vTweek, Clip);
 
+	cout << "Clipped " << Clip << " : \t" <<  vTweek << endl;
+
+	double vMean = VectorOp<double>::Mean(vTweek);
+	cout << "Mean: " << vMean << endl;
 
 	return vTweek;
 }
