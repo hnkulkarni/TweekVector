@@ -8,6 +8,16 @@
 
 #include "Includes.h"
 
+
+
+/*******************************************************************
+ * Function Name: help
+ * Return Type 	: int
+ * Created On	: May 24, 2014
+ * Created By 	: hrushi
+ * Comments		: Prints Help Text when invalid arguments
+ * Arguments	:
+ *******************************************************************/
 int help()
 {
 	cerr << "Insufficient arguments" << endl;
@@ -19,8 +29,15 @@ int help()
 	return EXIT_SUCCESS;
 }
 
-
-int main(int argc, char* argv[])
+/*******************************************************************
+ * Function Name: SanitizeInput
+ * Return Type 	: int
+ * Created On	: May 24, 2014
+ * Created By 	: hrushi
+ * Comments		: Sanitizes the input: CHANGES ARGUMENTS
+ * Arguments	: int argc, char *argv[], UINT numElements, double Trim
+ *******************************************************************/
+int SanitizeInput( int argc, char *argv[], UINT& numElements, double& Trim)
 {
 
 	if(argc < 3)
@@ -32,11 +49,11 @@ int main(int argc, char* argv[])
 
 	try
 	{
-		UINT iNumElems = boost::lexical_cast<UINT>(argv[1]);
-		cout << iNumElems << endl;
+		numElements = boost::lexical_cast<UINT>(argv[1]);
+		cout << numElements << endl;
 
-		double ClipPercent = boost::lexical_cast<double>(argv[2]);
-		cout << "Clip Percentage: " << ClipPercent << endl;
+		Trim = boost::lexical_cast<double>(argv[2]);
+		cout << "Clip Percentage: " << Trim << endl;
 	}
 	catch(const boost::exception& expt )
 	{
@@ -46,6 +63,18 @@ int main(int argc, char* argv[])
 		throw ERR_INVALID_ARGS;
 	}
 
+	return EXIT_SUCCESS;
+}
+
+
+int main(int argc, char* argv[])
+{
+
+
+	UINT iNumElements(0);
+	double ClipPercent(0);
+
+	SanitizeInput(argc, argv, iNumElements, ClipPercent);
 
 
 	return EXIT_SUCCESS;
