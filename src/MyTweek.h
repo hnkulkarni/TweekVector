@@ -8,9 +8,26 @@
 #ifndef MYTWEEK_H_
 #define MYTWEEK_H_
 
-class MyTweek {
+#include "Includes.h"
+#include "VectorOp.h"
+
+class MyTweek
+{
+private:
+
+	/**************************************************************
+	 *           Private Member Variables
+	 **************************************************************/
+
+	/**************************************************************
+	 *           Private Functions
+	 **************************************************************/
+
+protected:
+
+
 public:
-	MyTweek();
+	MyTweek(const vector<double>& vals, double Clip);
 	virtual ~MyTweek();
 };
 

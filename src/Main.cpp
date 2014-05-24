@@ -7,8 +7,8 @@
 //============================================================================
 
 #include "Includes.h"
-
-
+#include "VectorOp.h"
+#include "MyTweek.h"
 
 /*******************************************************************
  * Function Name: help
@@ -37,7 +37,7 @@ int help()
  * Comments		: Sanitizes the input: CHANGES ARGUMENTS
  * Arguments	: int argc, char *argv[], UINT numElements, double Trim
  *******************************************************************/
-int SanitizeInput( int argc, char *argv[], UINT& numElements, double& Trim)
+int SanitizeInput( int argc, char *argv[], UINT& numElements, double& Clip)
 {
 
 	if(argc < 3)
@@ -50,10 +50,18 @@ int SanitizeInput( int argc, char *argv[], UINT& numElements, double& Trim)
 	try
 	{
 		numElements = boost::lexical_cast<UINT>(argv[1]);
-		cout << numElements << endl;
+		cout << numElements << " ";
 
-		Trim = boost::lexical_cast<double>(argv[2]);
-		cout << "Clip Percentage: " << Trim << endl;
+		Clip = boost::lexical_cast<double>(argv[2]);
+		cout << "Clip Percentage: " << Clip << endl;
+
+
+		if(Clip >= MAX_CLIP )
+		{
+			cerr << "Clip Percentage should be 0 to < 0.5 " << endl;
+			throw ERR_INVALID_ARGS;
+		}
+
 	}
 	catch(const boost::exception& expt )
 	{
@@ -71,11 +79,14 @@ int main(int argc, char* argv[])
 {
 
 
-	UINT iNumElements(0);
-	double ClipPercent(0);
+	UINT numElements(0);
+	double Clip(0);
 
-	SanitizeInput(argc, argv, iNumElements, ClipPercent);
+	SanitizeInput(argc, argv, numElements, Clip);
 
+	vector<double> Vals = VectorOp<double>::GetRandom(numElements);
+
+	MyTweek mTweek(Vals, Clip);
 
 	return EXIT_SUCCESS;
 }

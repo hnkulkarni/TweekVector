@@ -17,7 +17,8 @@
 #include <vector>
 #include <algorithm>
 #include <exception>
-
+#include <time.h>       /* For generating Random Numbers */
+#include <ostream>
 
 /**************************************************************
  *           Boost includes
@@ -44,5 +45,6 @@ typedef unsigned int UINT;
  *           Constants
  **************************************************************/
 const int ERR_INVALID_ARGS = -1;
+const double MAX_CLIP = 0.5;
 
 #endif /* INCLUDES_H_ */
